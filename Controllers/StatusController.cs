@@ -2,9 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 
 public class StatusController : Controller
 {
+    private IStatusData data;
+
+    public StatusController(IStatusData data)
+    {
+        this.data = data;
+    }
+
     public ActionResult Index()
     {
-        StatusData data = new StatusData();
         List<Status> lista = data.Read();
         return View(lista); 
     }
@@ -12,14 +18,45 @@ public class StatusController : Controller
     public ActionResult Search(IFormCollection form)
     {
         string search = form["search"]; // <input name="search" />
-        // criar um método em StatusData para realizar a pesquisa
-        // de status por parte do nome.
-        // Exemplo: search = "do"
-        // Retorno List<Status> ("to do", "doing", "done")
-        // "xpto".Contains("xp") => true
-
-        StatusData data = new StatusData();
+        
         List<Status> lista = data.Read(search);
         return View("Index", lista);
+    }
+
+    [HttpGet]
+    public ActionResult Create() 
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Status status)
+    {
+        data.Create(status);
+        return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id) 
+    {
+        data.Delete(id);
+        return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ActionResult Update(int id)
+    {
+        Status status = data.Read(id);
+
+        if(status == null)
+            return RedirectToAction("Index");
+
+        return View(status);
+    }
+
+    [HttpPost]
+    public ActionResult Update(int id, Status status)
+    {
+        data.Update(id, status);
+        return RedirectToAction("Index");
     }
 }

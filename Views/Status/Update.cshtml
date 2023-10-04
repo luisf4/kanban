@@ -1,0 +1,15 @@
+@model Status
+@{ Layout = "/Views/Shared/Layout.cshtml"; }
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/status/index">Status</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Update</li>
+  </ol>
+</nav>
+
+<form action="/status/update/@Model.StatusId" method="POST">
+    <input name="name" class="form-control" value="@Model.Name"/>
+    <br/>
+    <button class="btn btn-primary">Atualizar</button>
+</form>

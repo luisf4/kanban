@@ -1,8 +1,45 @@
+// WebApplication
 var builder = WebApplication.CreateBuilder(args);
 
+// middlewares (adiciono)
 builder.Services.AddControllersWithViews();
+
+//
+builder.Services.AddSingleton<IStatusData, StatusData>();
 
 var app = builder.Build();
 
-app.MapControllerRoute("default","/{controller=status}/{action=Index}/{id?}");
+// middlewares (configuro)
+app.MapControllerRoute("default", "/{controller=Status}/{action=Index}/{id?}");
+
 app.Run();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// http://localhost:1234/[CLASS]/[METHOD]
+
+// http://localhost:1234/[Controller]/[Action]
+
+// class Produto {
+// string get() {} 
+// }
+
+// http://localhost:1234/Produto/get -> String

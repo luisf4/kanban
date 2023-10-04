@@ -1,13 +1,6 @@
-public class StatusData
+public class StatusData : IStatusData
 {
     private List<Status> lista = new List<Status>();
-
-    public StatusData()
-    {
-        lista.Add(new Status { StatusId = 1, Name = "To do"});
-        lista.Add(new Status { StatusId = 2, Name = "Doing"});
-        lista.Add(new Status { StatusId = 3, Name = "Done"});
-    }
 
     public List<Status> Read()
     {
@@ -16,17 +9,51 @@ public class StatusData
 
     public List<Status> Read(string search)
     {
-        List<Status> result = new List<Status>();
+        // var result = lista
+        //     .Where((status) => status.Name.ToLower().Contains(search.ToLower()))
+        //     .ToList();
 
-        foreach(var status in lista)
+        // SELECT * FROM lista l WHERE l.Name LIKE "%search%"
+        var result = from l in lista
+                     where l.Name.ToLower().Contains(search.ToLower())
+                     select l;
+
+        return result.ToList();
+    }
+
+    public void Create(Status status) 
+    {
+        lista.Add(status);
+    }
+
+    public void Delete(int id)
+    {
+        foreach(var status in lista) 
         {
-            if(status.Name.ToLower().Contains(search.ToLower()))
+            if(status.StatusId == id)
             {
-                result.Add(status);
+                lista.Remove(status);
+                break;
             }
         }
+    }
 
-        return result;
+    public Status Read(int id)
+    {
+        return lista.FirstOrDefault(status => status.StatusId == id);
+        // foreach(var status in lista)
+        // {
+        //     if(status.StatusId == id)
+        //     {
+        //         return status;
+        //     }
+        // }
+    }
+
+    public void Update(int id, Status status)
+    {
+        Status statusToUpdate = lista.First(status => status.StatusId == id);
+        statusToUpdate.Name = status.Name;
     }
 
 }
