@@ -1,0 +1,21 @@
+@{ Layout = "/Views/Shared/Layout.cshtml"; }
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/task/index">Task</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Create</li>
+  </ol>
+</nav>
+
+<form action="/task/create" method="POST">
+    Title
+    <input name="title" class="form-control"/>
+    Description
+    <input name="description" class="form-control"/>
+    Points
+    <input name="points" class="form-control"/>
+    Priority
+    <input name="priority" class="form-control"/>
+    <br/>
+    <button class="btn btn-primary">Salvar</button>
+</form>

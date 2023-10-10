@@ -6,11 +6,12 @@ builder.Services.AddControllersWithViews();
 
 //
 builder.Services.AddSingleton<IStatusData, StatusData>();
+builder.Services.AddSingleton<ITaskData, TaskData>();
 
 var app = builder.Build();
 
 // middlewares (configuro)
-app.MapControllerRoute("default", "/{controller=Status}/{action=Index}/{id?}");
+app.MapControllerRoute("default", "/{controller=status}/{action=Index}/{id?}");
 
 app.Run();
 
