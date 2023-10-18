@@ -15,8 +15,8 @@ public class StatusData : IStatusData
 
         // SELECT * FROM lista l WHERE l.Name LIKE "%search%"
         var result = from l in lista
-                    where l.Name.ToLower().Contains(search.ToLower())
-                    select l;
+                     where l.Name.ToLower().Contains(search.ToLower())
+                     select l;
 
         return result.ToList();
     }

@@ -1,13 +1,6 @@
 @model List<Status>
 @{ Layout = "/Views/Shared/Layout.cshtml"; }
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/task/index">Task</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Status</li>
-        </ol>
-    </nav>
-
     <form action="/status/search" method="POST" class="input-group mb-3">
         <input name="search" class="form-control"/>
         <button class="btn btn-outline-secondary">Pesquisar</button>
@@ -17,7 +10,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>&nbsp;</th>
+            <th colspan="2">&nbsp;</th>
         </tr>
 
         @foreach(var status in Model)
@@ -33,5 +26,3 @@
     </table>
 
     <a href="/status/create" class="btn btn-primary">Create</a>
-
-    

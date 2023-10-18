@@ -1,4 +1,4 @@
-@model Tasks
+@model Kanban.Models.Task
 @{ Layout = "/Views/Shared/Layout.cshtml"; }
 
 <nav aria-label="breadcrumb">
@@ -9,15 +9,10 @@
 </nav>
 
 <form action="/task/update/@Model.TaskId" method="POST">
-    @Html.AntiForgeryToken()
-    Title
-    <input type="text" name="Title" title="title" class="form-control" value="@Model.Title" />
-    Description
-    <input type="text" name="Description" description="description" class="form-control" value="@Model.Description" />
-    Points
-    <input type="int" name="Points" points="points" class="form-control" value="@Model.Points" />
-    Priority
-    <input type="int" name="Priority" priority="priority" class="form-control" value="@Model.Priority" />
-    <br />
-    <button type="submit" class="btn btn-primary">Atualizar</button>
+    <input name="title" class="form-control" value="@Model.Title" />
+    <input name="description" class="form-control" value="@Model.Description"/>
+    <input name="points" class="form-control" value="@Model.Points"/>
+    <input name="priority" class="form-control" value="@Model.Priority"/>
+    <br/>
+    <button class="btn btn-primary">Atualizar</button>
 </form>

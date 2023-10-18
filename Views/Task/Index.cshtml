@@ -1,26 +1,16 @@
-@model List<Tasks>
+@model List<Kanban.Models.Task>
+    
 @{ Layout = "/Views/Shared/Layout.cshtml"; }
-
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/status/index">Status</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Task</li>
-        </ol>
-    </nav>
-
-    <form action="/task/search" method="POST" class="input-group mb-3">
-        <input name="search" class="form-control"/>
-        <button class="btn btn-outline-secondary">Pesquisar</button>
-    </form>
 
     <table class="table table-hover">
         <tr>
-            <th>TaskId</th>
+            <th>Id</th>
             <th>Title</th>
             <th>Description</th>
             <th>Points</th>
             <th>Priority</th>
-            <th>&nbsp;</th>
+            <th>Status</th>
+            <th colspan="2">&nbsp;</th>
         </tr>
 
         @foreach(var task in Model)
@@ -31,6 +21,7 @@
             <td>@task.Description</td>
             <td>@task.Points</td>
             <td>@task.Priority</td>
+            <td>@task.Status.Name</td>
             <td><a href="/task/delete/@task.TaskId">Delete</a></td>
             <td><a href="/task/update/@task.TaskId">Update</a></td>
         </tr>

@@ -8,14 +8,18 @@
 </nav>
 
 <form action="/task/create" method="POST">
-    Title
-    <input name="title" class="form-control"/>
-    Description
-    <input name="description" class="form-control"/>
-    Points
-    <input name="points" class="form-control"/>
-    Priority
-    <input name="priority" class="form-control"/>
+    <input name="title" class="form-control" placeholder="Title"/>
+    <input name="description" class="form-control" placeholder="Description"/>
+    <input name="points" class="form-control" placeholder="Points"/>
+    <input name="priority" class="form-control" placeholder="Priority"/>
+
+    <select name="status.StatusId" class="form-control">
+      @foreach(var status in ViewBag.Status)
+      {
+      <option value="@status.StatusId">@status.Name</option>
+      }
+    </select>
+
     <br/>
     <button class="btn btn-primary">Salvar</button>
 </form>
